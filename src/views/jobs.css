@@ -1,0 +1,6 @@
+.custom{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border:30px solid pink;
+}

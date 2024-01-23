@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS file -->
+        <!-- Views folder has been served statically so directly providing path relative to views folder -->
+    <!-- <link rel="stylesheet" type="text/css" href="./jobs.css">   -->
+        <!-- public folder has been served statically so directly providing file path relative to public folder -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css"> 
+    <!-- For icons -->
+    <script src="https://kit.fontawesome.com/b3e9ec6a62.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <!-- Adding JS public file for confirmation delete functionality -->
+    <script>
+    function downloadFile(resumePath) {
+        // Open the download route in a new tab
+        if(resumePath == '/resume/Please upload resume'){
+            return;
+        }
+        console.log('resume path',resumePath);
+        window.open(resumePath, '_blank');
+      }
+    </script>
+    <script src="/delete.js"></script>
+    <script src="/registerLogin.js"></script>
+    <title>Easily</title>
+</head>
+
+<body>
+    <!-- Taken from bootstrap website -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Inventory App</a>  <!-- Note -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!-- rn just added link of products -->
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/jobs">Jobs</a>
+                    </li>
+                    <!-- <% if(locals.userEmail) { %>
+                        <li>
+                            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+                        </li>
+                    <% } else { %> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               <%=nameUser%>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <% if(nameUser != 'Recruiter'){ %>
+                                    <a href="/logout" class="dropdown-item nav-link" aria-current="page">
+                                        Logout
+                                    </a>
+                                <% } else { %>
+                                    <button type="button" class="dropdown-item nav-link" data-bs-toggle="modal" data-bs-target="<%= nameUser == 'Recruiter' ? '#login' : '' %>" >
+                                        Login
+                                    </button>
+                                <% } %>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item nav-link active" aria-current="page" href="/postJob">Post Jobs</a></li>
+                            </ul>
+                          </li>
+                    
+                    <!-- <% } %> -->
+                </ul>
+                <form action='/jobs' method="post" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Main contents -->
+    <div class="container" style="margin: 24px;">
+        <!-- Placeholder for rendering other ejs views -->
+        <%-body%>
+
+    </div>
+</body>
+</html>

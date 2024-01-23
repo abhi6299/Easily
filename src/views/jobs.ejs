@@ -1,0 +1,21 @@
+<div class="card" id="custom" style="width: auto; border:2px solid yellow;">
+    <% x.forEach(j => { %>
+    <div class="card-body" style="margin:10px; width:22%; display:inline-block; border:2px solid black;">
+      <h4><%=j.company%></h4>
+      <h5><%=j.category%> <%= j.role %></h5>
+      <p><i class="fa-solid fa-location-dot"></i> <%= j.location %></p>
+      <p><i class="fa-solid fa-indian-rupee-sign"></i> <%= j.ctc %></p>
+      <p>
+        <% if(j.skills){ %>
+          <% if(j.skills.length>0){ %>
+        <% for (let y = 0; y < j.skills.length; y++) { %>
+          <span style="border:2px solid red; border-radius:2rem; border-color: green; padding:0.4rem;"><%= j.skills[y] %></span>
+        <% } %>
+        <%}%>
+        <%}%>
+      </p>
+      <!-- <p class="card-text"><%= j.company %></p> -->
+      <a href="/job-desc/<%= j.id %>" class="btn btn-primary">View Details</a>
+    </div>
+    <% }) %>
+</div>

@@ -1,0 +1,74 @@
+<h1> <%=x.role%> Opportunity in <%=x.location %> at <%=x.company%></h1>
+<div>
+    <%if(nameUser != 'Recruiter'){%>
+    <a href="/updateJob/<%=x.id%>" class="btn btn-primary">Update</a>
+    <!-- <a href="/deleteJob/<%=x.id%>" class="btn btn-primary">Delete</a> -->
+    <button type="button" onclick="Jobdelete('<%=x.id%>')" class="btn btn-danger">Delete</button>
+    <%}%>
+    <!-- <a href="/deleteJob/<%=x.id%>"><button type="button" class="btn btn-secondary">Delete</button></a> -->
+    <h2><%=x.company%></h2>
+    <h3><%=x.category%> <%= x.role %></h3>
+    <p><i class="fa-solid fa-location-dot"></i> <%= x.location %></p>
+    <p><i class="fa-solid fa-indian-rupee-sign"></i> <%= x.ctc %></p>
+    <p><i class="fa-solid fa-arrows-rotate"></i> Apply By: <%=x.date%></p>
+    <p><i class="fa-solid fa-chart-bar"></i> Number of openings: <%=x.openings%></p>
+    <p><a style="color:red; text-decoration: none;" href="/jobs-desc/applicants/<%=x.id%>" ><i class="fa-solid fa-users-line"></i> Applicants:<%= applicationsTotal %> </a></p>
+    <!-- <a src="applicant-details-upload.ejs"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Apply Now</button></a> -->
+    <p>
+      <% if(x.skills){ %>
+        <% if(x.skills.length>0){ %>
+      <% for (let y = 0; y < x.skills.length; y++) { %>
+        <span style="border:2px solid red; border-radius:2rem; border-color: green; padding:0.4rem;"><%= x.skills[y] %></span>
+      <% } %>
+      <%}%>
+      <%}%>
+    </p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Apply Now
+    </button> <br>
+    <p style="display:inline-block; margin-top:1rem; padding: 0.3rem; color:white; background-color: green; border:2px solid red; border-radius:3rem;"> Posted On: <%=x.date%></p>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Easily</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/job-desc/<%=x.id%>" method="post" enctype="multipart/form-data">
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control-plaintext" id="name" name="name" placeholder="Enter your name" value="<%= (check ? applicantDetail[applicantDetail.length-1].name : '') %>">
+                    </div>  
+                </div>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control-plaintext" id="email" name="email" placeholder="email@example.com" value="<%= (check ? applicantDetail[applicantDetail.length-1].email : '') %>">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="contact" class="col-sm-2 col-form-label">Contact No.</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control-plaintext" id="contact" name="contact" placeholder="999-9999-999" value="<%= (check ? applicantDetail[applicantDetail.length-1].contact : '') %>">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="resume" class="col-sm-2 col-form-label">Resume</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control-plaintext" id="resume" name="resumePath" value="<%= (check ? applicantDetail[applicantDetail.length-1].resume : 'Please upload resume') %>">
+                      <input type="file" name="resume" id="resume" />
+                    </div>          
+                  </div>
+                  <button type="submit" class="btn btn-primary" name="submit" value="apply">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit" value="save">Save changes</button>
+            </div>
+          </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

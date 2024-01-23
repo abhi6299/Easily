@@ -1,0 +1,77 @@
+<h1 class="mt-5 mb-4 header">A comprehensive Job platform for reliable job opportunities and internships</h1>
+<br><br><button class="btn btn-outline-success my-2 my-sm-0" type="submit">I am a Job Seeker</button>
+
+<button type="button" class="btn btn-outline-success my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="<%= nameUser == 'Recruiter' ? '#staticBackdrop' : '#AlreadyRegistered' %>">
+    I am a Recruiter <span style = "color:red;"><%= msg ? '---'+msg : '' %> </span>
+</button> 
+<div class="modal fade" id="AlreadyRegistered" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Easily - Thanks for logging in </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h2> You have already registered and logged in</h2>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Easily - Please register yourself or Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/register" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" onclick="Register()" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            Already Registered ? <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="#login" data-bs-dismiss="modal">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="login">Easily - Please Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

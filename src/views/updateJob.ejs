@@ -1,0 +1,65 @@
+<form action="/update/<%= id %>/" method="post" >
+    <!-- Job Category -->
+    <select name="category" class="form-select" aria-label="Default select example">
+        <option value="Select" <%= (check ? '' : 'selected') %>>Select Job Category</option>
+        <option value="Tech" <%= (selectedJob && selectedJob.category =='Tech' ? 'selected' : '') %>>Tech</option>
+        <option value="Non-Tech" <%= (selectedJob && selectedJob.category =='Non-Tech' ? 'selected' : '') %>>Non-Tech</option>
+    </select>
+    <!-- Role -->
+    <select name="role" class="form-select" aria-label="Default select example">
+        <option value="Select" <%= (check ? '' : 'selected') %>>Select Job Designation</option>
+        <option value="HR" <%= (selectedJob && selectedJob.role =='HR' ? 'selected' : '') %>>HR</option>
+        <option value="DevOps" <%= (selectedJob && selectedJob.role =='DevOps' ? 'selected' : '') %>>DevOps</option>
+        <option value="SDE" <%= (selectedJob && selectedJob.role =='SDE' ? 'selected' : '') %>>SDE</option>
+        <option value="MERNDeveloper" <%= (selectedJob && selectedJob.role =='MERNDeveloper' ? 'selected' : '') %>>MERNDeveloper</option>
+    </select>
+    <!-- Job Location -->
+    <div class="mb-3">
+        <label for="location" class="form-label">Job Location</label>
+        <input type="text" class="form-control" id="location" name="location" placeholder="Mumbai, Delhi etc .." value = "<%= (check ? selectedJob.location : '') %>">
+    </div>
+    <!-- Company -->
+    <div class="mb-3 row">
+        <label for="company" class="col-sm-2 col-form-label">Company</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control-plaintext" id="company" name="company" placeholder="Enter your company name" value="<%= (check ? selectedJob.company : '') %>">
+        </div>
+    </div>
+    <!-- Salary + no. of opening -->
+    <div class="row">
+        <div class="col">
+        <input type="number" class="form-control" name="ctc" placeholder="salary" aria-label="salary" value="<%= (check ? selectedJob.ctc : '') %>">
+        </div>
+        <div class="col">
+        <input type="number" class="form-control" name="opening" placeholder="No. of openings" aria-label="opening" value="<%= (check ? selectedJob.openings : '') %>">
+        </div>
+    </div> <br>
+    <!-- Skills -->
+    <span class="dropdown">
+        <!-- <p> Course done </p> -->
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Skills Needed
+        </button>
+          <ul class="dropdown-menu dropdown-menu-lights">
+            <li><div class="form-check">
+                <input class="form-check-input" type="checkbox" name="skills" value="react" id="react" <%= selectedJob && selectedJob.skills.includes('react') ? 'checked' : '' %>>
+                <label class="form-check-label" for="react"> React </label>
+            </div></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><div class="form-check">
+                <input class="form-check-input" type="checkbox" name="skills" value="nodejs" id="nodejs" <%= selectedJob && selectedJob.skills.includes('nodejs') ? 'checked' : '' %>>
+                <label class="form-check-label" for="nodejs">NodeJs</label>
+            </div></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><div class="form-check">
+                <input class="form-check-input" type="checkbox" name="skills" value="html" id="html" <%= selectedJob && selectedJob.skills.includes('html') ? 'checked' : '' %>>
+                <label class="form-check-label" for="html">HTML</label>
+            </div></li>
+          </ul>
+        </span>
+    <span>
+    <label for="date">Select a Date:</label>
+    <input type="date" id="date" name="date" value="<%= (check ? selectedJob.date : '') %>"></span>
+
+    <div><button type="submit" class="btn btn-secondary mt-5">Update Job</button></div>
+  </form>
