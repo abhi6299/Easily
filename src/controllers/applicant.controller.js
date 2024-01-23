@@ -5,7 +5,7 @@ export class ApplicantController{
 
     homepage(req,res,next){
         let a = null;
-        let nameUser = 'Recruiter';
+        let nameUser = 'Recruiter';  
         if(req.session.userEmail){
             const x = userModel.returnName(req.session.userEmail);
             nameUser = x.name;

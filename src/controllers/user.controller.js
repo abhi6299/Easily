@@ -5,7 +5,7 @@ export class userController{
         // res.sendFile(path.join(path.resolve(),'src','views','products.html'));
     }
     getLogin(req,res){
-        res.render("login",{errorMsg:null});
+        res.render("login",{errorMsg:null});  
         // res.sendFile(path.join(path.resolve(),'src','views','products.html'));
     }
 
